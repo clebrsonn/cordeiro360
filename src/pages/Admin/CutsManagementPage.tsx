@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import './CutsManagementPage.css';
@@ -17,6 +18,7 @@ const CutsManagementPage: React.FC = () => {
   const [editingCut, setEditingCut] = useState<Cut | null>(null);
   const [formData, setFormData] = useState({ name: '', description: '', nutritional_value: '' });
   const { token } = useAuth(); // Needed for authenticated requests
+  const navigate = useNavigate();
 
   const fetchCuts = async () => {
     setLoading(true);
@@ -84,7 +86,8 @@ const CutsManagementPage: React.FC = () => {
   return (
     <div className="admin-page">
       <header className="admin-header">
-        <h1>Manage Cuts</h1>
+        <button onClick={() => navigate('/')} className="back-button">← Voltar</button>
+        <h1>Gerenciar Cortes</h1>
       </header>
       <div className="admin-content">
         <div className="form-container">

@@ -23,10 +23,10 @@ const Header: React.FC = () => {
       <nav className="header-nav">
         {isAuthenticated ? (
           <>
-            <Link to="/admin/cuts" className="nav-link">Manage Cuts</Link>
-            <Link to="/admin/library" className="nav-link">Manage Library</Link>
-            <Link to="/admin/animals" className="nav-link">Manage Animals</Link>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <Link to="/admin/animals" className="nav-link">Animais e Saúde</Link>
+            <Link to="/admin/cuts" className="nav-link">Cortes</Link>
+            <Link to="/admin/library" className="nav-link">Biblioteca</Link>
+            <button onClick={handleLogout} className="logout-button">Sair</button>
           </>
         ) : (
           <Link to="/login" className="nav-link">Login</Link>

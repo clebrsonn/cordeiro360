@@ -13,18 +13,12 @@ const Dashboard: React.FC = () => {
     <div className="dashboard">
       <Header />
       <main className="dashboard-grid">
-        <div className="grid-col-1">
-            <Overview />
-            <Health />
-        </div>
-        <div className="grid-col-2">
-            <Library />
-            <Cuts />
-        </div>
-        <div className="grid-col-3">
-            <Management />
-            <Community />
-        </div>
+        <Overview />
+        <Health />
+        <Library />
+        <Cuts />
+        <Management />
+        <Community />
       </main>
     </div>
   );

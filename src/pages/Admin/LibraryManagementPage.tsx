@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import './LibraryManagementPage.css';
@@ -21,6 +22,7 @@ const LibraryManagementPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { token } = useAuth();
+  const navigate = useNavigate();
 
   const [categoryName, setCategoryName] = useState('');
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -136,7 +138,8 @@ const LibraryManagementPage: React.FC = () => {
   return (
     <div className="admin-page">
       <header className="admin-header">
-        <h1>Manage Library</h1>
+        <button onClick={() => navigate('/')} className="back-button">← Voltar</button>
+        <h1>Gerenciar Biblioteca</h1>
       </header>
       <div className="admin-content library-management-grid">
         <div className="category-management">
