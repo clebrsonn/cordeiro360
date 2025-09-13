@@ -1,7 +1,16 @@
 .header {
-  text-align: center;
-  color: #388E3C; /* A vibrant green, closer to the image */
-  padding: 20px 0 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #388E3C;
+  padding: 20px 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-branding a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .header h1 {
@@ -18,4 +27,39 @@
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
 }
