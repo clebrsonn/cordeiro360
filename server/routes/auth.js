@@ -5,8 +5,7 @@ const db = require('../database');
 
 const router = express.Router();
 
-// Placeholder for the JWT secret. In a real app, this should be in an environment variable.
-const JWT_SECRET = 'your_super_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_for_testing';
 
 // [POST] /api/auth/register
 router.post('/register', async (req, res) => {

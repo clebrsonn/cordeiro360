@@ -29,8 +29,8 @@ const Library: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const catPromise = axios.get('http://localhost:3001/api/public/library/categories');
-        const itemPromise = axios.get('http://localhost:3001/api/public/library/items');
+        const catPromise = axios.get('/api/public/library/categories');
+        const itemPromise = axios.get('/api/public/library/items');
 
         const [catResponse, itemResponse] = await Promise.all([catPromise, itemPromise]);
 
@@ -67,7 +67,7 @@ const Library: React.FC = () => {
             {groupedItems[categoryName].map(item => (
               <li key={item.id} className="library-item">
                 <span className="library-icon">📄</span>
-                <a href={`http://localhost:3001/${item.file_path}`} target="_blank" rel="noopener noreferrer">
+                <a href={`/${item.file_path}`} target="_blank" rel="noopener noreferrer">
                   {item.title}
                 </a>
               </li>

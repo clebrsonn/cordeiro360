@@ -34,8 +34,8 @@ const LibraryManagementPage: React.FC = () => {
     setError(null);
     const headers = { Authorization: `Bearer ${token}` };
     try {
-      const catPromise = axios.get('http://localhost:3001/api/library/categories', { headers });
-      const itemPromise = axios.get('http://localhost:3001/api/library/items', { headers });
+      const catPromise = axios.get('/api/library/categories', { headers });
+      const itemPromise = axios.get('/api/library/items', { headers });
       const [catResponse, itemResponse] = await Promise.all([catPromise, itemPromise]);
       setCategories(catResponse.data);
       setItems(itemResponse.data);
@@ -54,8 +54,8 @@ const LibraryManagementPage: React.FC = () => {
     e.preventDefault();
     const headers = { Authorization: `Bearer ${token}` };
     const url = editingCategory
-      ? `http://localhost:3001/api/library/categories/${editingCategory.id}`
-      : 'http://localhost:3001/api/library/categories';
+      ? `/api/library/categories/${editingCategory.id}`
+      : '/api/library/categories';
     const method = editingCategory ? 'put' : 'post';
 
     try {
@@ -76,7 +76,7 @@ const LibraryManagementPage: React.FC = () => {
   const handleDeleteCategoryClick = async (id: number) => {
     if (window.confirm('Are you sure? This will not delete items in the category.')) {
       try {
-        await axios.delete(`http://localhost:3001/api/library/categories/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.delete(`/api/library/categories/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         fetchAllData();
       } catch (err) {
         setError('Failed to delete category.');
@@ -107,7 +107,7 @@ const LibraryManagementPage: React.FC = () => {
     formData.append('file', file);
 
     try {
-      await axios.post('http://localhost:3001/api/library/items', formData, {
+      await axios.post('/api/library/items', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ const LibraryManagementPage: React.FC = () => {
   const handleDeleteItemClick = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       try {
-        await axios.delete(`http://localhost:3001/api/library/items/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.delete(`/api/library/items/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         fetchAllData();
       } catch (err) {
         setError('Failed to delete item.');
@@ -200,7 +200,7 @@ const LibraryManagementPage: React.FC = () => {
               <tbody>
                 {items.map((item) => (
                   <tr key={item.id}>
-                    <td><a href={`http://localhost:3001/${item.file_path}`} target="_blank" rel="noopener noreferrer" className="item-link">{item.title}</a></td>
+                    <td><a href={`/${item.file_path}`} target="_blank" rel="noopener noreferrer" className="item-link">{item.title}</a></td>
                     <td>{item.category_name || 'N/A'}</td>
                     <td className="actions">
                       <button className="delete-btn" onClick={() => handleDeleteItemClick(item.id)}>Delete</button>

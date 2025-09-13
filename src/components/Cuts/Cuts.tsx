@@ -20,7 +20,7 @@ const Cuts: React.FC = () => {
   useEffect(() => {
     const fetchCuts = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/cuts');
+        const response = await axios.get('/api/cuts');
         setCuts(response.data);
       } catch (err) {
         setError('Failed to fetch cuts data.');

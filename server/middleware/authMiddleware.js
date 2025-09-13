@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// The same secret key used to sign the token
-const JWT_SECRET = 'your_super_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_for_testing';
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;

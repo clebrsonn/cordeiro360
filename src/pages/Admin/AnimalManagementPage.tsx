@@ -44,7 +44,7 @@ const AnimalManagementPage: React.FC = () => {
     if (!token) return;
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3001/api/animals', { headers });
+      const response = await axios.get('/api/animals', { headers });
       setAnimals(response.data);
     } catch (err) {
       setError('Failed to fetch animals.');
@@ -59,7 +59,7 @@ const AnimalManagementPage: React.FC = () => {
 
   const fetchHealthRecords = async (animalId: number) => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/health-records/${animalId}`, { headers });
+      const response = await axios.get(`/api/health-records/${animalId}`, { headers });
       setHealthRecords(response.data);
     } catch (err) {
       setError('Failed to fetch health records.');
@@ -76,7 +76,7 @@ const AnimalManagementPage: React.FC = () => {
     const method = editingAnimal ? 'put' : 'post';
     const url = editingAnimal ? `/api/animals/${editingAnimal.id}` : '/api/animals';
     try {
-      await axios[method](`http://localhost:3001${url}`, animalFormData, { headers });
+      await axios[method](url, animalFormData, { headers });
       resetAnimalForm();
       fetchAnimals();
     } catch (err: any) {
@@ -122,7 +122,7 @@ const AnimalManagementPage: React.FC = () => {
     const method = editingHealthRecord ? 'put' : 'post';
     const url = editingHealthRecord ? `/api/health-records/${editingHealthRecord.id}` : `/api/health-records/${selectedAnimal.id}`;
     try {
-      await axios[method](`http://localhost:3001${url}`, healthFormData, { headers });
+      await axios[method](url, healthFormData, { headers });
       resetHealthForm();
       fetchHealthRecords(selectedAnimal.id);
     } catch (err) {

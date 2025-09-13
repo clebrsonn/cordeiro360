@@ -21,7 +21,7 @@ const CutsManagementPage: React.FC = () => {
   const fetchCuts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3001/api/cuts');
+      const response = await axios.get('/api/cuts');
       setCuts(response.data);
     } catch (err) {
       setError('Failed to fetch cuts.');
@@ -46,10 +46,10 @@ const CutsManagementPage: React.FC = () => {
     try {
       if (editingCut) {
         // Update existing cut
-        await axios.put(`http://localhost:3001/api/cuts/${editingCut.id}`, formData, { headers });
+        await axios.put(`/api/cuts/${editingCut.id}`, formData, { headers });
       } else {
         // Add new cut
-        await axios.post('http://localhost:3001/api/cuts', formData, { headers });
+        await axios.post('/api/cuts', formData, { headers });
       }
       resetForm();
       fetchCuts(); // Refresh list
@@ -66,7 +66,7 @@ const CutsManagementPage: React.FC = () => {
   const handleDeleteClick = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this cut?')) {
       try {
-        await axios.delete(`http://localhost:3001/api/cuts/${id}`, {
+        await axios.delete(`/api/cuts/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         fetchCuts(); // Refresh list

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const db = require('./database'); // We will create this file next
@@ -30,6 +31,12 @@ app.use('/api/library/items', libraryItemsRoutes);
 // Use public library routes
 const publicLibraryRoutes = require('./routes/publicLibrary');
 app.use('/api/public/library', publicLibraryRoutes);
+
+// Use Health/Animal routes (protected)
+const animalsRoutes = require('./routes/animals');
+const healthRecordsRoutes = require('./routes/healthRecords');
+app.use('/api/animals', animalsRoutes);
+app.use('/api/health-records', healthRecordsRoutes);
 
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));
