@@ -7,8 +7,34 @@ const router = express.Router();
 // Protect all routes
 router.use(authMiddleware);
 
+// GET all health records, optionally filtered by status
+router.get('/', (req, res) => {
+  const { status } = req.query; // e.g., /api/health-records?status=Vacinado
+
+  let sql = `
+    SELECT hr.*, a.name as animal_name, a.tag_number
+    FROM health_records hr
+    JOIN animals a ON hr.animal_id = a.id
+  `;
+  const params = [];
+
+  if (status) {
+    sql += ' WHERE hr.status = ?';
+    params.push(status);
+  }
+
+  sql += ' ORDER BY hr.date DESC';
+
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ message: 'Database error.', error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
 // GET all records for a specific animal
-router.get('/:animal_id', (req, res) => {
+router.get('/animal/:animal_id', (req, res) => {
   const { animal_id } = req.params;
   db.all(
     'SELECT * FROM health_records WHERE animal_id = ? ORDER BY date DESC',

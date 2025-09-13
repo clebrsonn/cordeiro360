@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import './CutsManagementPage.css'; // Reusing styles
@@ -37,13 +38,15 @@ const AnimalManagementPage: React.FC = () => {
   const [healthFormData, setHealthFormData] = useState(emptyHealthRecord);
 
   const { token } = useAuth();
-  const headers = { Authorization: `Bearer ${token}` };
+  const navigate = useNavigate();
+
 
   // --- Data Fetching ---
   const fetchAnimals = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     try {
+      const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.get('/api/animals', { headers });
       setAnimals(response.data);
     } catch (err) {
@@ -51,7 +54,7 @@ const AnimalManagementPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [token, headers]);
+  }, [token]);
 
   useEffect(() => {
     fetchAnimals();
@@ -59,7 +62,8 @@ const AnimalManagementPage: React.FC = () => {
 
   const fetchHealthRecords = async (animalId: number) => {
     try {
-      const response = await axios.get(`/api/health-records/${animalId}`, { headers });
+        const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.get(`/api/health-records/animal/${animalId}`, { headers });
       setHealthRecords(response.data);
     } catch (err) {
       setError('Failed to fetch health records.');
@@ -76,6 +80,7 @@ const AnimalManagementPage: React.FC = () => {
     const method = editingAnimal ? 'put' : 'post';
     const url = editingAnimal ? `/api/animals/${editingAnimal.id}` : '/api/animals';
     try {
+        const headers = { Authorization: `Bearer ${token}` };
       await axios[method](url, animalFormData, { headers });
       resetAnimalForm();
       fetchAnimals();
@@ -92,6 +97,7 @@ const AnimalManagementPage: React.FC = () => {
   const handleDeleteAnimalClick = async (id: number) => {
     if (window.confirm('Are you sure? This also deletes all associated health records.')) {
       try {
+        const headers = { Authorization: `Bearer ${token}` };
         await axios.delete(`/api/animals/${id}`, { headers });
         fetchAnimals();
         if (selectedAnimal?.id === id) setSelectedAnimal(null); // Clear selection if deleted
@@ -122,6 +128,7 @@ const AnimalManagementPage: React.FC = () => {
     const method = editingHealthRecord ? 'put' : 'post';
     const url = editingHealthRecord ? `/api/health-records/${editingHealthRecord.id}` : `/api/health-records/${selectedAnimal.id}`;
     try {
+        const headers = { Authorization: `Bearer ${token}` };
       await axios[method](url, healthFormData, { headers });
       resetHealthForm();
       fetchHealthRecords(selectedAnimal.id);
@@ -138,6 +145,7 @@ const AnimalManagementPage: React.FC = () => {
   const handleDeleteHealthClick = async (recordId: number) => {
     if (window.confirm('Are you sure you want to delete this health record?')) {
       try {
+        const headers = { Authorization: `Bearer ${token}` };
         await axios.delete(`/api/health-records/${recordId}`, { headers });
         if(selectedAnimal) fetchHealthRecords(selectedAnimal.id);
       } catch (err) {
@@ -154,7 +162,10 @@ const AnimalManagementPage: React.FC = () => {
   // --- Render ---
   return (
     <div className="admin-page">
-      <header className="admin-header"><h1>Manage Animals & Health</h1></header>
+      <header className="admin-header">
+        <button onClick={() => navigate('/')} className="back-button">← Voltar</button>
+        <h1>Gerenciar Animais e Saúde</h1>
+      </header>
       <div className="admin-content">
         <div className="form-container">
           <h3>{editingAnimal ? 'Edit Animal' : 'Add New Animal'}</h3>

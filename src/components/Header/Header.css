@@ -3,9 +3,16 @@
   justify-content: space-between;
   align-items: center;
   color: #388E3C;
-  padding: 20px 40px;
+  padding: 15px 20px; /* Adjusted padding */
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-wrap: wrap; /* Allow items to wrap on small screens */
+}
+
+.header-branding {
+  text-align: center; /* Center branding on small screens */
+  width: 100%; /* Take full width on small screens */
+  margin-bottom: 15px; /* Add space below branding */
 }
 
 .header-branding a {
@@ -14,7 +21,7 @@
 }
 
 .header h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem; /* Reduced font size */
   font-weight: 700;
   margin: 0;
   letter-spacing: 1px;
@@ -22,7 +29,7 @@
 }
 
 .header p {
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduced font size */
   margin: 0;
   font-weight: 400;
   text-transform: uppercase;
@@ -32,7 +39,10 @@
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem; /* Reduced gap */
+  width: 100%; /* Take full width */
+  justify-content: center; /* Center nav items */
+  flex-wrap: wrap; /* Allow nav items to wrap */
 }
 
 .nav-link {
@@ -42,6 +52,7 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
+  text-align: center;
 }
 
 .nav-link:hover {
@@ -62,4 +73,32 @@
 
 .logout-button:hover {
   background-color: #c82333;
+}
+
+/* Medium screens and up */
+@media (min-width: 768px) {
+  .header {
+    flex-wrap: nowrap; /* Prevent wrapping */
+    padding: 20px 40px;
+  }
+
+  .header-branding {
+    text-align: left; /* Align left */
+    width: auto; /* Auto width */
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+
+  .header-nav {
+    width: auto; /* Auto width */
+    justify-content: flex-end; /* Align right */
+    gap: 1.5rem; /* Restore gap */
+  }
+
+  .header h1 {
+    font-size: 3.5rem; /* Restore font size */
+  }
+
+  .header p {
+    font-size: 1rem; /* Restore font size */
+  }
 }

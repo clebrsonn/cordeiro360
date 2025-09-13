@@ -1,26 +1,80 @@
-.health {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 20px;
-}
-
 .health-title {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+    margin: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
 }
 
 .health-description {
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.5;
-  margin: 0;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
 }
 
 .health-icon-large {
-  font-size: 4rem;
-  color: #388E3C;
+    font-size: 4rem;
+    text-align: center;
+    color: #3498db;
+    opacity: 0.8;
+}
+
+/* New styles for the health records list */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.health-icon {
+    font-size: 1.8rem;
+    color: #3498db;
+}
+
+.health-records-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.health-record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.2s;
+}
+
+.health-record-item:last-child {
+    border-bottom: none;
+}
+
+.health-record-item:hover {
+    background-color: #f9f9f9;
+}
+
+.record-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.record-animal {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 1rem;
+}
+
+.record-status {
+    font-size: 0.85rem;
+    color: #95a5a6;
+}
+
+.record-date {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.error-message {
+  color: #e74c3c;
 }
