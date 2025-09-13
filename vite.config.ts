@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://cordeiro360-back.onrender.com',
         changeOrigin: true,
         secure: false,
       },
