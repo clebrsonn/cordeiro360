@@ -1,0 +1,53 @@
+.library {
+  gap: 20px;
+}
+
+.library-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.library-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f7f7f7;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.library-icon {
+  font-size: 1.5rem;
+  width: 30px;
+  text-align: center;
+}
+
+.library-button {
+  background-color: #4CAF50; /* Green color from the image */
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.library-button:hover {
+  background-color: #45a049;
+}
