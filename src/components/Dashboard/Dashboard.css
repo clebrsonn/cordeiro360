@@ -1,0 +1,15 @@
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.grid-col-1, .grid-col-2, .grid-col-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

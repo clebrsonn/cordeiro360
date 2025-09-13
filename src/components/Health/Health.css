@@ -1,0 +1,65 @@
+.health {
+  gap: 20px;
+}
+
+.health-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.health-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.health-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.health-item span:first-of-type {
+    font-size: 1.5rem;
+}
+
+.health-item span:last-of-type {
+    margin-left: auto;
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.health-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.health-button {
+  flex: 1;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.health-button.green {
+  background-color: #38761d; /* Darker green from the image */
+  color: white;
+  border: none;
+}
+
+.health-button.white {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}

@@ -1,0 +1,67 @@
+.community {
+  gap: 20px;
+}
+
+.community-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.community-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  max-height: 200px; /* Or any height that fits the design */
+}
+
+.feed-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder */
+  flex-shrink: 0;
+}
+
+.feed-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.feed-user {
+  margin-bottom: 4px;
+}
+
+.feed-text {
+  color: #555;
+}
+
+.community-input {
+  display: flex;
+  margin-top: auto; /* Pushes input to the bottom */
+}
+
+.community-input input {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  border-radius: 20px 0 0 20px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.community-input button {
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
