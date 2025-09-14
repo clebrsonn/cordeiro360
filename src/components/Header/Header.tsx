@@ -25,6 +25,7 @@ const Header: React.FC = () => {
           <>
             <Link to="/admin/animals" className="nav-link">Animais e Saúde</Link>
             <Link to="/admin/cuts" className="nav-link">Cortes</Link>
+            <Link to="/admin/stock" className="nav-link">Estoque</Link>
             <Link to="/admin/library" className="nav-link">Biblioteca</Link>
             <button onClick={handleLogout} className="logout-button">Sair</button>
           </>

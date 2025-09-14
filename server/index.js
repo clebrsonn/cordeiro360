@@ -42,6 +42,12 @@ app.use('/api/health-records', healthRecordsRoutes);
 const overviewRoutes = require('./routes/overview');
 app.use('/api/overview', overviewRoutes);
 
+// Use Product and Stock routes (protected)
+const productRoutes = require('./routes/products');
+const stockRoutes = require('./routes/stock');
+app.use('/api/products', productRoutes);
+app.use('/api/stock', stockRoutes);
+
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));
 
