@@ -6,6 +6,8 @@ import './Overview.css';
 interface OverviewStats {
   animalCount: number;
   eventCount: number;
+  totalCosts: number | null;
+  stockQuantity: number | null;
 }
 
 const Overview: React.FC = () => {
@@ -25,7 +27,7 @@ const Overview: React.FC = () => {
       const response = await axios.get('/api/overview', { headers });
       setStats(response.data);
     } catch (err) {
-      setError('Failed to load overview data.');
+      setError('Falha ao carregar dados do painel.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -35,6 +37,11 @@ const Overview: React.FC = () => {
   useEffect(() => {
     fetchStats();
   }, [fetchStats]);
+
+  const formatCurrency = (value: number | null | undefined) => {
+    if (value === null || value === undefined) return 'R$ 0,00';
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  };
 
   return (
     <div className="card overview">
@@ -53,22 +60,22 @@ const Overview: React.FC = () => {
         <div className="info-box" style={{backgroundColor: '#E3F2FD'}}>
           <div className="info-box-icon">📦</div>
           <div className="info-box-content">
-            <span className="info-box-number">250kg</span>
-            <span className="info-box-text">Estoque</span>
+            <span className="info-box-number">{loading ? '...' : `${stats?.stockQuantity ?? 0} un`}</span>
+            <span className="info-box-text">Estoque Total</span>
           </div>
         </div>
         <div className="info-box" style={{backgroundColor: '#FFFDE7'}}>
           <div className="info-box-icon">💰</div>
           <div className="info-box-content">
-            <span className="info-box-number">R$ 200</span>
-            <span className="info-box-text">Custos</span>
+            <span className="info-box-number">{loading ? '...' : formatCurrency(stats?.totalCosts)}</span>
+            <span className="info-box-text">Custos de Compra</span>
           </div>
         </div>
         <div className="info-box" style={{backgroundColor: '#F3E5F5'}}>
           <div className="info-box-icon">🗓️</div>
           <div className="info-box-content">
             <span className="info-box-number">{loading ? '...' : stats?.eventCount ?? 0}</span>
-            <span className="info-box-text">Eventos</span>
+            <span className="info-box-text">Eventos de Saúde</span>
           </div>
         </div>
       </div>

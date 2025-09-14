@@ -78,6 +78,35 @@ const db = new sqlite3.Database('./database.db', (err) => {
                   return console.error('Error creating health_records table', err.message);
                 }
                 console.log('Health records table created or already exists.');
+
+                // Create products table
+                db.run(`CREATE TABLE IF NOT EXISTS products (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  name TEXT NOT NULL UNIQUE,
+                  description TEXT,
+                  unit TEXT NOT NULL
+                )`, (err) => {
+                  if (err) {
+                    return console.error('Error creating products table', err.message);
+                  }
+                  console.log('Products table created or already exists.');
+
+                  // Create stock_movements table
+                  db.run(`CREATE TABLE IF NOT EXISTS stock_movements (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    product_id INTEGER NOT NULL,
+                    quantity REAL NOT NULL,
+                    movement_date TEXT NOT NULL,
+                    type TEXT NOT NULL,
+                    cost_per_unit REAL,
+                    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+                  )`, (err) => {
+                    if (err) {
+                      return console.error('Error creating stock_movements table', err.message);
+                    }
+                    console.log('Stock movements table created or already exists.');
+                  });
+                });
               });
             });
           });

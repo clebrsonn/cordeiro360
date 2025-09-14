@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import CutsManagementPage from './pages/Admin/CutsManagementPage';
 import LibraryManagementPage from './pages/Admin/LibraryManagementPage';
 import AnimalManagementPage from './pages/Admin/AnimalManagementPage';
+import StockManagementPage from './pages/Admin/StockManagementPage';
 import './App.css';
 
 const App: React.FC = () => {
@@ -45,6 +46,14 @@ const App: React.FC = () => {
             element={
               <ProtectedRoute>
                 <AnimalManagementPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/stock"
+            element={
+              <ProtectedRoute>
+                <StockManagementPage />
               </ProtectedRoute>
             }
           />
