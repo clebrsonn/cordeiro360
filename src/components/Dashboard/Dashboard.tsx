@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../Header/Header';
 import Overview from '../Overview/Overview';
 import Library from '../Library/Library';
 import Management from '../Management/Management';
@@ -11,7 +10,6 @@ import './Dashboard.css';
 const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
-      <Header />
       <main className="dashboard-grid">
         <Overview />
         <Health />
