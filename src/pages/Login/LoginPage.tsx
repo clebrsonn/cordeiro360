@@ -27,9 +27,10 @@ const LoginPage: React.FC = () => {
       }
     } catch (err: any) {
       if (err.response && err.response.data && err.response.data.message) {
+        // Assuming server sends Portuguese errors for "Invalid credentials"
         setError(err.response.data.message);
       } else {
-        setError('Login failed. Please try again.');
+        setError('Falha no login. Por favor, tente novamente.');
       }
     }
   };
@@ -37,10 +38,10 @@ const LoginPage: React.FC = () => {
   return (
     <div className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Entrar</h2>
         {error && <p className="error-message">{error}</p>}
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Usuário</label>
           <input
             type="text"
             id="username"
@@ -50,7 +51,7 @@ const LoginPage: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Senha</label>
           <input
             type="password"
             id="password"
@@ -59,9 +60,9 @@ const LoginPage: React.FC = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Entrar</button>
         <p className="register-link">
-          Don't have an account? <Link to="/register">Register here</Link>
+          Não tem uma conta? <Link to="/register">Registre-se aqui</Link>
         </p>
       </form>
     </div>
