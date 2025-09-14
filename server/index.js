@@ -38,6 +38,10 @@ const healthRecordsRoutes = require('./routes/healthRecords');
 app.use('/api/animals', animalsRoutes);
 app.use('/api/health-records', healthRecordsRoutes);
 
+// Use Overview routes (protected)
+const overviewRoutes = require('./routes/overview');
+app.use('/api/overview', overviewRoutes);
+
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));
 
