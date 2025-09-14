@@ -1,0 +1,6 @@
+.main-layout .content {
+  /* This ensures that content starts below the header, if the header is fixed.
+     For now, this can just provide some padding if needed, but the real benefit
+     is having a dedicated class to style the main content area. */
+  padding: 0; /* Or some other global padding if desired */
+}
