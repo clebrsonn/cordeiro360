@@ -17,7 +17,7 @@ const RegisterPage: React.FC = () => {
     setSuccess('');
 
     if (password !== confirmPassword) {
-      setError("Passwords don't match!");
+      setError('As senhas não coincidem!');
       return;
     }
 
@@ -27,7 +27,7 @@ const RegisterPage: React.FC = () => {
         password,
       });
 
-      setSuccess('Registration successful! Redirecting to login...');
+      setSuccess('Registro bem-sucedido! Redirecionando para o login...');
       setTimeout(() => {
         navigate('/login');
       }, 2000);
@@ -35,7 +35,7 @@ const RegisterPage: React.FC = () => {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
-        setError('Registration failed. Please try again.');
+        setError('Falha no registro. Por favor, tente novamente.');
       }
     }
   };
@@ -43,11 +43,11 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>Registrar</h2>
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Usuário</label>
           <input
             type="text"
             id="username"
@@ -57,7 +57,7 @@ const RegisterPage: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Senha</label>
           <input
             type="password"
             id="password"
@@ -67,7 +67,7 @@ const RegisterPage: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="confirm-password">Confirm Password</label>
+          <label htmlFor="confirm-password">Confirmar Senha</label>
           <input
             type="password"
             id="confirm-password"
@@ -76,9 +76,9 @@ const RegisterPage: React.FC = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Registrar</button>
         <p className="login-link">
-          Already have an account? <Link to="/login">Login here</Link>
+          Já tem uma conta? <Link to="/login">Entre aqui</Link>
         </p>
       </form>
     </div>

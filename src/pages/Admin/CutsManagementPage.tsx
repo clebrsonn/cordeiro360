@@ -26,7 +26,7 @@ const CutsManagementPage: React.FC = () => {
       const response = await axios.get('/api/cuts');
       setCuts(response.data);
     } catch (err) {
-      setError('Failed to fetch cuts.');
+      setError('Falha ao buscar cortes.');
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ const CutsManagementPage: React.FC = () => {
       resetForm();
       fetchCuts(); // Refresh list
     } catch (err) {
-      setError('Failed to save cut. Please try again.');
+      setError('Falha ao salvar corte. Por favor, tente novamente.');
     }
   };
 
@@ -66,14 +66,14 @@ const CutsManagementPage: React.FC = () => {
   };
 
   const handleDeleteClick = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this cut?')) {
+    if (window.confirm('Tem certeza que deseja excluir este corte?')) {
       try {
         await axios.delete(`/api/cuts/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         fetchCuts(); // Refresh list
       } catch (err) {
-        setError('Failed to delete cut.');
+        setError('Falha ao excluir corte.');
       }
     }
   };
@@ -91,38 +91,38 @@ const CutsManagementPage: React.FC = () => {
       </header>
       <div className="admin-content">
         <div className="form-container">
-          <h3>{editingCut ? 'Edit Cut' : 'Add a New Cut'}</h3>
+          <h3>{editingCut ? 'Editar Corte' : 'Adicionar Novo Corte'}</h3>
           <form onSubmit={handleFormSubmit}>
             <div className="form-group">
-              <label>Name</label>
+              <label>Nome</label>
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
             </div>
             <div className="form-group">
-              <label>Description</label>
+              <label>Descrição</label>
               <textarea name="description" value={formData.description} onChange={handleInputChange}></textarea>
             </div>
             <div className="form-group">
-              <label>Nutritional Value</label>
+              <label>Valor Nutricional</label>
               <input type="text" name="nutritional_value" value={formData.nutritional_value} onChange={handleInputChange} />
             </div>
             <div className="form-actions">
-              <button type="submit">{editingCut ? 'Update Cut' : 'Add Cut'}</button>
-              {editingCut && <button type="button" onClick={resetForm}>Cancel</button>}
+              <button type="submit">{editingCut ? 'Atualizar Corte' : 'Adicionar Corte'}</button>
+              {editingCut && <button type="button" onClick={resetForm}>Cancelar</button>}
             </div>
           </form>
         </div>
 
         <div className="list-container">
-          <h2>Cuts List</h2>
-          {loading && <p>Loading cuts...</p>}
+          <h2>Lista de Cortes</h2>
+          {loading && <p>Carregando cortes...</p>}
           {error && <p className="error-message">{error}</p>}
           {!loading && !error && (
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Actions</th>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,8 +131,8 @@ const CutsManagementPage: React.FC = () => {
                     <td>{cut.name}</td>
                     <td>{cut.description}</td>
                     <td className="actions">
-                      <button className="edit-btn" onClick={() => handleEditClick(cut)}>Edit</button>
-                      <button className="delete-btn" onClick={() => handleDeleteClick(cut.id)}>Delete</button>
+                      <button className="edit-btn" onClick={() => handleEditClick(cut)}>Editar</button>
+                      <button className="delete-btn" onClick={() => handleDeleteClick(cut.id)}>Excluir</button>
                     </td>
                   </tr>
                 ))}

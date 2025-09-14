@@ -42,7 +42,7 @@ const LibraryManagementPage: React.FC = () => {
       setCategories(catResponse.data);
       setItems(itemResponse.data);
     } catch (err) {
-      setError('Failed to fetch library data.');
+      setError('Falha ao buscar dados da biblioteca.');
     } finally {
       setLoading(false);
     }
@@ -66,7 +66,7 @@ const LibraryManagementPage: React.FC = () => {
       setEditingCategory(null);
       fetchAllData();
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to save category.');
+      setError(err.response?.data?.message || 'Falha ao salvar categoria.');
     }
   };
 
@@ -76,12 +76,12 @@ const LibraryManagementPage: React.FC = () => {
   };
 
   const handleDeleteCategoryClick = async (id: number) => {
-    if (window.confirm('Are you sure? This will not delete items in the category.')) {
+    if (window.confirm('Tem certeza? Isso não excluirá os itens da categoria.')) {
       try {
         await axios.delete(`/api/library/categories/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         fetchAllData();
       } catch (err) {
-        setError('Failed to delete category.');
+        setError('Falha ao excluir categoria.');
       }
     }
   };
@@ -99,7 +99,7 @@ const LibraryManagementPage: React.FC = () => {
   const handleItemSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file || !itemFormData.title || !itemFormData.category_id) {
-      setError('Title, category, and file are required.');
+      setError('Título, categoria e arquivo são obrigatórios.');
       return;
     }
 
@@ -120,17 +120,17 @@ const LibraryManagementPage: React.FC = () => {
       (document.getElementById('file-input') as HTMLInputElement).value = '';
       fetchAllData();
     } catch (err) {
-      setError('Failed to upload item.');
+      setError('Falha ao enviar item.');
     }
   };
 
   const handleDeleteItemClick = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
+    if (window.confirm('Tem certeza que deseja excluir este item?')) {
       try {
         await axios.delete(`/api/library/items/${id}`, { headers: { Authorization: `Bearer ${token}` } });
         fetchAllData();
       } catch (err) {
-        setError('Failed to delete item.');
+        setError('Falha ao excluir item.');
       }
     }
   };
@@ -143,15 +143,15 @@ const LibraryManagementPage: React.FC = () => {
       </header>
       <div className="admin-content library-management-grid">
         <div className="category-management">
-          <h2>Manage Categories</h2>
+          <h2>Gerenciar Categorias</h2>
           <form onSubmit={handleCategorySubmit} className="form-container">
             <div className="form-group">
-              <label>{editingCategory ? 'Edit Category Name' : 'New Category Name'}</label>
+              <label>{editingCategory ? 'Editar Nome da Categoria' : 'Nome da Nova Categoria'}</label>
               <input type="text" value={categoryName} onChange={(e) => setCategoryName(e.target.value)} required />
             </div>
             <div className="form-actions">
-              <button type="submit">{editingCategory ? 'Update' : 'Add'}</button>
-              {editingCategory && <button type="button" onClick={() => { setEditingCategory(null); setCategoryName(''); }}>Cancel</button>}
+              <button type="submit">{editingCategory ? 'Atualizar' : 'Adicionar'}</button>
+              {editingCategory && <button type="button" onClick={() => { setEditingCategory(null); setCategoryName(''); }}>Cancelar</button>}
             </div>
           </form>
           <ul className="category-list">
@@ -168,36 +168,36 @@ const LibraryManagementPage: React.FC = () => {
         </div>
 
         <div className="item-management">
-          <h2>Upload New Item</h2>
+          <h2>Enviar Novo Item</h2>
           <form onSubmit={handleItemSubmit} className="upload-form form-container">
             <div className="form-group">
-              <label>Title</label>
+              <label>Título</label>
               <input type="text" name="title" value={itemFormData.title} onChange={handleItemFormChange} required />
             </div>
             <div className="form-group">
-              <label>Category</label>
+              <label>Categoria</label>
               <select name="category_id" value={itemFormData.category_id} onChange={handleItemFormChange} required>
-                <option value="" disabled>Select a category</option>
+                <option value="" disabled>Selecione uma categoria</option>
                 {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
               </select>
             </div>
             <div className="form-group">
-              <label>File</label>
+              <label>Arquivo</label>
               <input type="file" id="file-input" onChange={handleFileChange} required />
             </div>
-            <button type="submit">Upload Item</button>
+            <button type="submit">Enviar Item</button>
           </form>
 
-          <h2>Library Items</h2>
-          {loading && <p>Loading...</p>}
+          <h2>Itens da Biblioteca</h2>
+          {loading && <p>Carregando...</p>}
           {error && <p className="error-message">{error}</p>}
           {!loading && !error && (
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th>Category</th>
-                  <th>Actions</th>
+                  <th>Título</th>
+                  <th>Categoria</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -206,7 +206,7 @@ const LibraryManagementPage: React.FC = () => {
                     <td><a href={`/${item.file_path}`} target="_blank" rel="noopener noreferrer" className="item-link">{item.title}</a></td>
                     <td>{item.category_name || 'N/A'}</td>
                     <td className="actions">
-                      <button className="delete-btn" onClick={() => handleDeleteItemClick(item.id)}>Delete</button>
+                      <button className="delete-btn" onClick={() => handleDeleteItemClick(item.id)}>Excluir</button>
                     </td>
                   </tr>
                 ))}
